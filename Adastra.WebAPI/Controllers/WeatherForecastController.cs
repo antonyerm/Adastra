@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Adastra.WebAPI.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,24 @@ namespace Adastra.WebAPI.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+    }
+
+    [ApiController]
+    [Route("[controller]")]
+    public class ApiController : ControllerBase
+    {
+        private IOpenWeatherService openWeatherService;
+
+        public ApiController(IOpenWeatherService openWeatherService)
+        {
+            this.openWeatherService = openWeatherService;
+        }
+
+        [HttpGet]
+        public string Get()
+        {
+            return this.openWeatherService.GetApi();
         }
     }
 }

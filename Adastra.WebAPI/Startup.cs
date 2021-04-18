@@ -1,3 +1,5 @@
+using Adastra.WebAPI.Extensions;
+using Adastra.WebAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +34,9 @@ namespace Adastra.WebAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Adastra.WebAPI", Version = "v1" });
             });
+
+            services.ConfigureUserSecrets(Configuration);
+            services.AddScoped<IOpenWeatherService, OpenWeatherService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
