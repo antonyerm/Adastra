@@ -37,7 +37,7 @@ namespace Adastra.WebAPI.Services
             var response = await client.SendAsync(request);
             if (response.IsSuccessStatusCode)
             {
-                var jsonString = response.Content.ReadAsStringAsync().Result;
+                var jsonString = await response.Content.ReadAsStringAsync();
                 result = JsonSerializer.Deserialize<OpenWeatherResponse>(jsonString);
             }
 

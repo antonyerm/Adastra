@@ -1,4 +1,5 @@
-﻿using Adastra.WebAPI.Services;
+﻿using Adastra.WebAPI.Models;
+using Adastra.WebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -56,10 +57,10 @@ namespace Adastra.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ShowFiveDays()
+        public async Task<OpenWeatherResponse> ShowFiveDays()
         {
             var response = await this.openWeatherService.GetWeatherForecast("Almaty");
-            return null;
+            return response;
         }
 
     }
