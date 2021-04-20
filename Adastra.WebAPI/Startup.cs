@@ -37,6 +37,7 @@ namespace Adastra.WebAPI
 
             services.ConfigureUserSecrets(Configuration);
             services.AddScoped<IOpenWeatherService, OpenWeatherService>();
+            services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
