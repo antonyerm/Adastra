@@ -9,36 +9,6 @@ using System.Threading.Tasks;
 
 namespace Adastra.WebAPI.Controllers
 {
-    //[ApiController]
-    //[Route("[controller]")]
-    //public class WeatherForecastController : ControllerBase
-    //{
-    //    private static readonly string[] Summaries = new[]
-    //    {
-    //        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    //    };
-
-    //    private readonly ILogger<WeatherForecastController> _logger;
-
-    //    public WeatherForecastController(ILogger<WeatherForecastController> logger)
-    //    {
-    //        _logger = logger;
-    //    }
-
-    //    [HttpGet]
-    //    public IEnumerable<WeatherForecast> Get()
-    //    {
-    //        var rng = new Random();
-    //        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-    //        {
-    //            Date = DateTime.Now.AddDays(index),
-    //            TemperatureC = rng.Next(-20, 55),
-    //            Summary = Summaries[rng.Next(Summaries.Length)]
-    //        })
-    //        .ToArray();
-    //    }
-    //}
-
     [ApiController]
     [Route("[controller]/[action]")]
     public class ForecastController : ControllerBase
@@ -57,11 +27,10 @@ namespace Adastra.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<OpenWeatherResponse> ShowFiveDays()
+        public async Task<List<WeatherForecast>> ShowFiveDays()
         {
-            var response = await this.openWeatherService.GetWeatherForecast("Almaty");
-            return response;
+            var forecastForFiveDays = await this.openWeatherService.GetWeatherForecast("Almaty");
+            return forecastForFiveDays;
         }
-
     }
 }

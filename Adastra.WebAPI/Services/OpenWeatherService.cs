@@ -27,9 +27,11 @@ namespace Adastra.WebAPI.Services
             return this.openWeatherConfig.ApiKey;
         }
 
-        public async Task<OpenWeatherResponse> GetWeatherForecast(string city)
+        public async Task<List<WeatherForecast>> GetWeatherForecast(string city)
         {
-            OpenWeatherResponse result = null;
+            OpenWeatherResponse openWeatherResponse = null;
+            var weatherForecasts = new List<WeatherForecast>();
+
             var client = this.httpClientFactory.CreateClient();
             string uri = $"http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={this.openWeatherConfig.ApiKey}";
             var request = new HttpRequestMessage(HttpMethod.Get, uri);
@@ -38,11 +40,32 @@ namespace Adastra.WebAPI.Services
             if (response.IsSuccessStatusCode)
             {
                 var jsonString = await response.Content.ReadAsStringAsync();
-                result = JsonSerializer.Deserialize<OpenWeatherResponse>(jsonString);
+                openWeatherResponse = JsonSerializer.Deserialize<OpenWeatherResponse>(jsonString);
             }
 
-            return result;
+            foreach (var forecast in openWeatherResponse.Forecasts)
+            {
+                var currentForecast = new WeatherForecast
+                {
+                    Time = DateTimeOffset.FromUnixTimeSeconds(forecast.DateTime).DateTime,
+                    Temperature = forecast.Temperatures.Temperature,
+                    Clouds = forecast.Clouds.CloudPercent,
+                    Wind = forecast.Wind.WindSpeed,
+                    WeatherConditions = new List<WeatherCondition>()
+                };
+                foreach(var condition in forecast.WeatherConditions)
+                {
+                    currentForecast.WeatherConditions.Add(new WeatherCondition
+                    {
+                        WeatherConditionName = condition.WeatherConditionName,
+                        WeatherConditionDescription = condition.WeatherConditionDescription
+                    });
+                }
 
+                weatherForecasts.Add(currentForecast);
+            }
+
+            return weatherForecasts;
         }
     }
 }

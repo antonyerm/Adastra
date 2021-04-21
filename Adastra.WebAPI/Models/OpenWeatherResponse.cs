@@ -21,7 +21,7 @@ namespace Adastra.WebAPI.Models
         [JsonPropertyName("main")]
         public Temperatures Temperatures { get; set; }
         [JsonPropertyName("weather")]
-        public List<WeatherCondition> WeatherConditions { get; set; }
+        public List<WeatherConditionResponse> WeatherConditions { get; set; }
         [JsonPropertyName("clouds")]
         public Clouds Clouds { get; set; }
         [JsonPropertyName("wind")]
@@ -35,7 +35,7 @@ namespace Adastra.WebAPI.Models
         public decimal Temperature { get; set; }
     }
 
-    public class WeatherCondition
+    public class WeatherConditionResponse
     {
         // "list.weather" node
         [JsonPropertyName("main")]
