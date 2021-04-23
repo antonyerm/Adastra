@@ -1,0 +1,9 @@
+﻿@model ForecastRequest;
+
+<form asp-action="RequestForecast" method="post">
+    <div class="input-group mb-3">
+        <span class="input-group-text">Enter the city name:</span>
+        <input asp-for=City />
+    </div>
+    <input type="submit" value="Get the forecast" />
+</form>

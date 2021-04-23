@@ -27,7 +27,7 @@ namespace Adastra.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<List<WeatherForecast>> ShowFiveDays()
+        public async Task<List<WeatherForecast>> GetFiveDaysForecast()
         {
             var forecastForFiveDays = await this.openWeatherService.GetWeatherForecast("Almaty");
             return forecastForFiveDays;

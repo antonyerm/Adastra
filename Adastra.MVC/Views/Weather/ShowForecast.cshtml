@@ -1,0 +1,34 @@
+﻿@model List<OpenWeatherForecast>;
+
+<h1>
+    Weather forecast for @ViewData["city"] city
+</h1>
+
+@foreach (var ForecastForTimeslot in Model)
+{
+<div>
+    <div>
+        <strong>@ForecastForTimeslot.Time.ToLocalTime().ToString()</strong>
+    </div>
+    <div>
+        Temperature: @(ForecastForTimeslot.Temperature - (decimal)273.15)
+    </div>
+    <div>
+        Clouds: @ForecastForTimeslot.Clouds
+    </div>
+    <div>
+        Wind: @ForecastForTimeslot.Wind
+    </div>
+    <div>
+        Weather conditions:
+        @foreach (var weatherCondition in ForecastForTimeslot.WeatherConditions)
+        {
+        <div>
+            @weatherCondition.WeatherConditionName
+            <span> - </span>
+            @weatherCondition.WeatherConditionDescription
+        </div>
+        }
+    </div>
+</div>
+}
