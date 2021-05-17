@@ -1,4 +1,5 @@
 ﻿using Adastra.MVC.Models;
+using Adastra.MVC.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Adastra.MVC.Services
 
         public async Task<List<OpenWeatherForecast>> GetForecastForFiveDays(string city)
         {
-            List<OpenWeatherForecast> result = null;
+            var result = new List<OpenWeatherForecast>();
             var client = httpClientFactory.CreateClient();
             var request = new HttpRequestMessage(HttpMethod.Get, 
                 new UriBuilder("http","localhost", 5000, "Forecast/GetFiveDaysForecast").Uri);
