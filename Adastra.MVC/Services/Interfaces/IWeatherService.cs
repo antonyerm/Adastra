@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Adastra.MVC.Services
+namespace Adastra.MVC.Services.Interfaces
 {
     public interface IWeatherService
     {

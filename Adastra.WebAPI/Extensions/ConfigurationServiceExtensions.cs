@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Adastra.WebAPI.Extensions
 {
-    public static class ServiceExtensions
+    public static class ConfigurationServiceExtensions
     {
         public static void ConfigureUserSecrets(this IServiceCollection services, IConfiguration configuration)
         {

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Adastra.MVC.Controllers
 {
+    /// <summary>
+    /// Controller written by Microsoft as part of MVC template.
+    /// </summary>
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

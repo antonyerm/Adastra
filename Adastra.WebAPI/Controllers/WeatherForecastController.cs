@@ -1,5 +1,6 @@
 ﻿using Adastra.WebAPI.Models;
 using Adastra.WebAPI.Services;
+using Adastra.WebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -32,5 +33,6 @@ namespace Adastra.WebAPI.Controllers
             var forecastForFiveDays = await this.openWeatherService.GetWeatherForecast("Almaty");
             return forecastForFiveDays;
         }
+
     }
 }
